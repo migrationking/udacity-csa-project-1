@@ -1,0 +1,59 @@
+MySQL [udacity]> exit
+Bye
+[ec2-user@ip-10-2-23-247 ~]$ history
+    1  sudo yum install mysql -y
+    2  history | grep mysql
+    3  history
+    4  mysql -h udacity-rr.cqmwxir4h4qx.us-west-1.rds.amazonaws.com -u admin -p
+    5  mysql -h udacity.cqmwxir4h4qx.us-west-1.rds.amazonaws.com -u admin -p
+    6  history
+[ec2-user@ip-10-2-23-247 ~]$ mysql -h udacity-rr.cqmwxir4h4qx.us-west-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.17 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> create table read-replica
+    -> (done VARCHAR(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'read-replica
+(done VARCHAR(20))' at line 1
+MySQL [udacity]> create table read-replica (done VARCHAR(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'read-replica (done VARCHAR(20))' at line 1
+MySQL [udacity]> CREATE TABLE DB (getting on my nerves);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on my nerves)' at line 1
+MySQL [udacity]> CREATE DATABASE readreplica-writes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-writes' at line 1
+MySQL [udacity]> CREATE DATABASE readreplica;
+Query OK, 1 row affected (0.00 sec)
+
+MySQL [udacity]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| readreplica        |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [udacity]> 
+

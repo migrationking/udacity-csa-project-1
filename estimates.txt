@@ -1,0 +1,4 @@
+The Recovery Time Objective (RTO) is the amount of time that it takes to actually takes to recovery the object or the database or the EC2 instance and how much time you can take to recover a downed or lost object or service.
+
+The Recovery Point Objective (RPO) is the amount and type of data you can actually stand to loose for an outage or during chaos engineering where you purposely take a production environment down. 
+

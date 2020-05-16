@@ -1,0 +1,166 @@
+:shea@HPL2004-01:~/Downloads$ ssh -i "kp-udacity-p2.pem" ec2-18-144-43-215.us-west-1.compute.amazonaws.com
+The authenticity of host 'ec2-18-144-43-215.us-west-1.compute.amazonaws.com (18.144.43.215)' can't be established.
+ECDSA key fingerprint is SHA256:Huk23jrFreosr9/RwmRFLaAZ+WA7twV9OdfYjcKCb6M.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-18-144-43-215.us-west-1.compute.amazonaws.com,18.144.43.215' (ECDSA) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0664 for 'kp-udacity-p2.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "kp-udacity-p2.pem": bad permissions
+shea@ec2-18-144-43-215.us-west-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+shea@HPL2004-01:~/Downloads$ chmod 400 kp-udacity-p2.pem 
+shea@HPL2004-01:~/Downloads$ ssh -i "kp-udacity-p2.pem" ec2-18-144-43-215.us-west-1.compute.amazonaws.com
+shea@ec2-18-144-43-215.us-west-1.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+shea@HPL2004-01:~/Downloads$ ssh -i "kp-udacity-p2.pem" ec2-user@ec2-18-144-43-215.us-west-1.compute.amazonaws.com
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+1 package(s) needed for security, out of 10 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-2-23-247 ~]$ sudo yum install mysql -y
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                                                                           | 2.4 kB  00:00:00     
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.64-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+============================================================================================================================================================================================================
+ Package                                       Arch                                         Version                                                  Repository                                        Size
+============================================================================================================================================================================================================
+Installing:
+ mariadb                                       x86_64                                       1:5.5.64-1.amzn2                                         amzn2-core                                       9.0 M
+
+Transaction Summary
+============================================================================================================================================================================================================
+Install  1 Package
+
+Total download size: 9.0 M
+Installed size: 49 M
+Downloading packages:
+mariadb-5.5.64-1.amzn2.x86_64.rpm                                                                                                                                                    | 9.0 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.64-1.amzn2.x86_64                                                                                                                                                          1/1 
+  Verifying  : 1:mariadb-5.5.64-1.amzn2.x86_64                                                                                                                                                          1/1 
+
+Installed:
+  mariadb.x86_64 1:5.5.64-1.amzn2                                                                                                                                                                           
+
+Complete!
+[ec2-user@ip-10-2-23-247 ~]$ history | grep mysql
+    1  sudo yum install mysql -y
+    2  history | grep mysql
+[ec2-user@ip-10-2-23-247 ~]$ history
+    1  sudo yum install mysql -y
+    2  history | grep mysql
+    3  history
+[ec2-user@ip-10-2-23-247 ~]$ mysql -h udacity-rr.cqmwxir4h4qx.us-west-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.17 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use database udacity;
+ERROR 1049 (42000): Unknown database 'database'
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+MySQL [(none)]> exit
+Bye
+[ec2-user@ip-10-2-23-247 ~]$ mysql -h udacity.cqmwxir4h4qx.us-west-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 37
+Server version: 8.0.17 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+MySQL [(none)]> CREATE TABLE udacity
+    -> (student-p2 (VARCHAR));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-p2 (VARCHAR))' at line 2
+MySQL [(none)]> show tables;
+ERROR 1046 (3D000): No database selected
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+MySQL [(none)]> CREATE DATABASE udacity;
+Query OK, 1 row affected (0.02 sec)
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| udacity            |
++--------------------+
+4 rows in set (0.00 sec)
+
+MySQL [(none)]> use Udacity
+ERROR 1049 (42000): Unknown database 'Udacity'
+MySQL [(none)]> Use database udacity;
+ERROR 1049 (42000): Unknown database 'database'
+MySQL [(none)]> use udacity;
+Database changed
+MySQL [udacity]> show tables;
+Empty set (0.00 sec)
+
+MySQL [udacity]> create table student
+    -> (student VARCHAR(15));
+Query OK, 0 rows affected (0.07 sec)
+
+MySQL [udacity]> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> 
+
+
