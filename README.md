@@ -1,4 +1,4 @@
-**#Udacity CSA Project 1#**
+**Udacity CSA Project 1**
 
 **Corrections/Amendments to the Udacity Instructions for things that were missing and I had to figure out on my own:**
 
