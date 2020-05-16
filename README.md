@@ -12,6 +12,6 @@ SSH to the instance and connect to the read replica database. (*Highly suggest l
 
 Verify if you are not able to insert data into the database but are able to read from the database. 4a. Super Helpful YouTube video: https://www.youtube.com/watch?v=XJ7dlwHuVUk 4b. Read the Docs! https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html
 
-...
 
-Also, on the S3 Bucket. You have to use the Object Lock option or just deleting the object will not allow it to be recovered from versioning.
+**S3 Bucket Instructions**
+You have to use the Object Lock option or just deleting the object will not allow it to be recovered from versioning.
