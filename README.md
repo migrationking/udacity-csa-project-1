@@ -1,6 +1,6 @@
-Udacity CSA Project 1
+**#Udacity CSA Project 1#**
 
-Corrections/Amendments to the Udacity Instructions for things that were missing and I had to figure out on my own:
+**Corrections/Amendments to the Udacity Instructions for things that were missing and I had to figure out on my own:**
 
 SSH to the instance and connect to the read replica database. (*Highly suggest learning on your own but this is what I learned when I got stuck and it is a general guide only. Don't cheat.)
 
